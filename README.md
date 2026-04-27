@@ -1,4 +1,4 @@
-# Finance App Platform 🚀
+# Finance App Platform
 
 This is a finance app I built using a full DevOps pipeline and cloud-native setup.
 

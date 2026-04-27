@@ -5,6 +5,7 @@ const config = require("./config/env");
 const healthRoutes = require("./routes/health.routes");
 const budgetRoutes = require("./routes/budget.routes");
 const expenseRoutes = require("./routes/expense.routes");
+const dashboardRoutes = require("./routes/dashboard.routes");
 
 // Middlewares
 const notFoundHandler = require("./middlewares/notFoundHandler");
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use(`${config.apiPrefix}/health`, healthRoutes);
 app.use(`${config.apiPrefix}/budgets`, budgetRoutes);
 app.use(`${config.apiPrefix}/expenses`, expenseRoutes);
+app.use(`${config.apiPrefix}/dashboard`, dashboardRoutes);
 
 // Error Handling
 app.use(notFoundHandler);

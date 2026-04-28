@@ -12,7 +12,7 @@ function Expenses() {
   });
 
   // Adjust if your backend uses /api/v1
-  const API_URL = "http://localhost:3000/api/v1/expenses";
+  const API_URL = "http://localhost:3001/api/v1/expenses";
 
   // Fetch Expenses
   const fetchExpenses = async () => {

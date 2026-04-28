@@ -1,0 +1,41 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: finance-postgres
+    environment:
+      POSTGRES_DB: finance_db
+      POSTGRES_USER: finance_user
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - finance_postgres_data:/var/lib/postgresql/data
+      - ./backend/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  backend:
+    build:
+      context: ./backend
+    container_name: finance-backend
+    environment:
+      PORT: 3000
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: finance_db
+      DB_USER: finance_user
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "3001:3000"
+    depends_on:
+      - postgres
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: finance-frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+
+volumes:
+  finance_postgres_data:
